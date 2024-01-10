@@ -1,0 +1,42 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "CloudPrntResourcesConfigurable1",
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": "arn:aws:iam::DUMMY_AWS_ACCOUNT_ID:role/*",
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "lambda.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Sid": "CloudPrntResourcesConfigurable2",
+      "Effect": "Allow",
+      "Action": "iot:DescribeEndpoint",
+      "Resource": "*"
+    },
+    {
+      "Sid": "CloudPrntResourcesConfigurable3",
+      "Effect": "Allow",
+      "Action": [
+        "iam:AttachRolePolicy",
+        "iam:CreateRole",
+        "iot:CreateAuthorizer",
+        "iot:SetDefaultAuthorizer",
+        "iot:TestInvokeAuthorizer",
+        "iot:UpdateAuthorizer",
+        "lambda:AddPermission",
+        "lambda:CreateFunction",
+        "lambda:UpdateFunctionCode"
+      ],
+      "Resource": [
+        "arn:aws:iam::DUMMY_AWS_ACCOUNT_ID:role/*",
+        "arn:aws:iot:*:DUMMY_AWS_ACCOUNT_ID:authorizer/*",
+        "arn:aws:lambda:*:DUMMY_AWS_ACCOUNT_ID:function:*"
+      ]
+    }
+  ]
+}

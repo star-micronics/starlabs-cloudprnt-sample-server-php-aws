@@ -1,0 +1,27 @@
+x-php_base: &php_base
+  build:
+    context: .
+    dockerfile: docker/php/Dockerfile
+  image: cloud-prnt-server/php-awsiot-php:1.0.0
+  platform: linux/amd64
+  volumes:
+    - ./src:/var/www/html/
+  tty: true
+  stdin_open: true
+
+services:
+  php:
+    <<: *php_base
+    container_name: "cloud-prnt-server-php-awsiot-php"
+    env_file:
+      - docker/php/.env
+      - docker/php/httpServer/.env
+    ports:
+      - 3802:80
+  subscriber:
+    <<: *php_base
+    container_name: cloud-prnt-server-php-awsiot-subscriber
+    env_file:
+      - docker/php/.env
+      - docker/php/mqttSubscriber/.env
+    entrypoint: ["/var/www/html/php_queue/mqtt_subscribe.sh"]

@@ -1,0 +1,26 @@
+{
+  "title": "star_cloudprnt_server_setting",
+  "version": "1.0.0",
+  "serverSupportProtocol": [
+    "HTTP",
+    "MQTT"
+  ],
+  "settingForMQTT": {
+    "useTriggerPOST": false,
+    "mqttConnectionSetting": {
+      "hostName": "xxxxxxxxxxxxxxxx-ats.iot.<aws-region>.amazonaws.com",
+      "portNumber": 443,
+      "useTls": true,
+      "authenticationSetting": {
+        "clientId": "{MAC}",
+        "username": "{MAC}",
+        "password": "test"
+      },
+      "tlsSetting": {
+        "alpn": [
+          "mqtt"
+        ]
+      }
+    }
+  }
+}
